@@ -36,9 +36,9 @@ export default function App() {
   const [device, setDevice] = useState<Device | null>(null);
 
 
-  const [acceleration_x, setAccelerationxCount] = useState(-1);
-  const [acceleration_y, setAccelerationyCount] = useState(-1);
-  const [acceleration_z, setAccelerationzCount] = useState(-1);
+  const [acceleration_x, setAccelerationxCount] = useState(0.00);
+  const [acceleration_y, setAccelerationyCount] = useState(0.00);
+  const [acceleration_z, setAccelerationzCount] = useState(0.00);
 
 
   const readData = (characteristic_uuid:string,setCount:Dispatch<number> ) => {
@@ -53,7 +53,7 @@ export default function App() {
         if (error || !char) {
           return;
         }
-        const rawValue = parseInt(atob(char?.value ?? ""));
+        const rawValue = parseFloat(atob(char?.value ?? ""));
         setCount(rawValue);
       }
     )
